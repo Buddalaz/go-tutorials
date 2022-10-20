@@ -24,7 +24,23 @@ func main() {
 
 	//4.without using var and use instead colun we only do this when initializing declaring the variable
 	//cant use this outside a function
-	nameFour := "four"
-	fmt.Println(nameFour)
+	// nameFour := "four"
+	// fmt.Println(nameFour)
 
+	//int
+	var ageOne int = 20
+	var ageTwo = 30
+	//infort type
+	ageThree := 40
+
+	fmt.Println(ageOne, ageTwo, ageThree)
+
+	//bits & memory
+	var numOne int8 = 25
+	var numTwo int8 = -128
+	var numeThree uint16 = 256
+
+	var scoreOne float32 = 25.98
+	var scoreTwo float64 = 3454534434234424325.98
+	scoreThree := 1.5
 }

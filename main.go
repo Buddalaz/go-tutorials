@@ -4,35 +4,41 @@ import "fmt"
 
 func main() {
 
-	age := 35
-	name := "sandun"
+	//create an array
+	var ages1 [3]int = [3]int{20, 25, 30} //this array has fixed leangth
+	var ages2 = [3]int{10, 20, 30}        //this array is same as this
 
-	//Print
-	fmt.Print("hello, ") //start with capital letter cuz fmt makes that public, and this dosen't add a new line
-	fmt.Print("world!")  // output is - hello, world!
+	//print array elements and length
+	fmt.Println(ages1, len(ages1))
+	fmt.Println(ages2, len(ages2)) // their is a function for check leangth of an array called len()
 
-	fmt.Print("hello, ") //if we want to add a new line use '\n'
-	fmt.Print("world! \n")
-	fmt.Print("new line")
+	//string arrays
+	names := [4]string{"adb", "asc", "sdas", "sasrfe"}
+	names[1] = "sadun" //can change element values
+	fmt.Println(names, len(names))
 
-	//Println
-	fmt.Println("hello sandun!") //this will print separatly and add a new line
-	fmt.Println("goodbye sandun!")
+	//slices (use arrays under the hood)
+	//we can change leangth, can add items to it or take items awey with it
+	var scores = []int{100, 50, 60} //not define the leangth
+	scores[2] = 25
 
-	// output variables to the console using Print function
-	fmt.Println("my age is", age, "my name is", name) //to use a variable in Println use ',' comma to concat
+	//append item to this slices
+	scores = append(scores, 85) //what happends here was, this dosent cahnge the scores instead of this return new slices with the append score just like override the scores
 
-	// format strings
-	//is whey to create a string with variables embeded inside
-	//Printf (formatted strings)
-	fmt.Printf("my age is %v and my name is %v \n", age, name) //we use format specifiers to emded a variable to a string '%v' to find the variable in sequence
-	fmt.Printf("my age is %q and my name is %q \n", age, name) //'%q' is used to quote around the variable	when we output them , not going to work with int
-	fmt.Printf("age is of type %T \n", age)                    //'%T' is used to get the date type of the variable
-	fmt.Printf("your score %f points! \n", 225.55)             //'%f' is used to print float numbers
-	fmt.Printf("your score %0.1f points! \n", 225.55)          //'%f' you can limit/round the number points that print with the float numbers
+	fmt.Println(scores, len(scores))
 
-	// Sprintf (save formatted strings)
-	var str = fmt.Sprintf("my age is %v and my name is %v \n", age, name) // in here we can save this string format in to a variable
-	fmt.Println("the saved string is : ", str)                            // output is the saved string is :  my age is 35 and my name is sandun
+	// slices ranges -> range is a way to get range of element from existing arrays wishe and store them to slice
+	rangeOne := names[1:3]
+	fmt.Println(rangeOne) //output ->[sadun sdas]
+
+	rangeTwo := names[2:] //this will get index 2 to end of the items
+	fmt.Println(rangeTwo) //output ->[sdas sasrfe]
+
+	rangeThree := names[:3] //this will get from start to index 3 not the 3
+	fmt.Println(rangeThree) //output -> [adb sadun sdas]
+
+	//we can also append items to ranges end of the day they also slices
+	rangeOne = append(rangeOne, "koopa")
+	fmt.Println(rangeOne) //output -> [sadun sdas koopa]
 
 }

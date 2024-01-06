@@ -4,66 +4,54 @@ import "fmt"
 
 func main() {
 
-	//Loops
-	//for all the loops ex:- while, for, for in in go use for
-	x := 0
-	for x < 5 {
-		fmt.Println("The value of x is:", x)
-		x++
-	}
-	//output will be
-	// The value of x is: 0
-	// The value of x is: 1
-	// The value of x is: 2
-	// The value of x is: 3
-	// The value of x is: 4
+	//boolean
 
-	//traditional loop
-	for i := 0; i < 5; i++ {
-		fmt.Println("The value of i is:", i)
-	}
-	//output will be
-	// The value of x is: 0
-	// The value of x is: 1
-	// The value of x is: 2
-	// The value of x is: 3
-	// The value of x is: 4
+	age := 45
 
-	//loop throught slice or string or numbers
-	names := []string{"animal", "bird", "fish", "reptails"}
-	for i := 0; i < len(names); i++ {
-		fmt.Println(names[i])
-	}
-	//output will be
-	// animal
-	// bird
-	// fish
-	// reptails
+	fmt.Println(age <= 50) //age is grater than or equal 50, output-> true
+	fmt.Println(age >= 50) //age is less than or equal 50, output-> false
+	fmt.Println(age == 45) //age is equal 45, output-> true
+	fmt.Println(age != 50) //age is not 50, output-> true
 
-	//another way to run slice just like for in instead we defined the index and value and define ':= range'
+	//conditionals
+	if age < 30 {
+		fmt.Println("age is less than 30")
+	} else if age < 40 {
+		fmt.Println("age is less than 40")
+	} else {
+		fmt.Println("age is not less than 45")
+	}
+
+	names := []string{"aniaml", "birds", "fish", "reptails"}
+
 	for index, value := range names {
-		fmt.Printf("The value at index %v is %v \n", index, value)
+		if index == 1 {
+			fmt.Println("continuing at pos", index)
+			continue
+		}
+		fmt.Printf("the value at pos %v is %v \n", index, value)
 	}
-	//output will be
-	// 	The value at index 0 is animal
-	// The value at index 1 is bird
-	// The value at index 2 is fish
-	// The value at index 3 is reptails
+	//output is
+	// 	the value at pos 0 is aniaml
+	// continuing at pos 1
+	// the value at pos 2 is fish
+	// the value at pos 3 is reptails
 
-	//if we don't want to used index we can just leave it like this '_'
-	for _, value := range names {
-		fmt.Printf("The value is %v \n", value)
+	for index, value := range names {
+		if index == 1 {
+			fmt.Println("continuing at pos", index)
+			continue
+		}
+		if index > 2 {
+			fmt.Println("breaking at pos", index)
+			break
+		}
+		fmt.Printf("the value at pos %v is %v \n", index, value)
 	}
-	//output will be
-	// 	The value is animal
-	// The value is bird
-	// The value is fish
-	// The value is reptails
+	//output is
+	// 	the value at pos 0 is aniaml
+	// continuing at pos 1
+	// the value at pos 2 is fish
+	// breaking at pos 3
 
-	for _, value := range names { //value is local copy of a variable
-		fmt.Printf("The value is %v \n", value)
-		value = "new string" //this value does not update the original slice
-	}
-
-	fmt.Println(names)
 }

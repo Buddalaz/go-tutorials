@@ -4,43 +4,35 @@ import "fmt"
 
 func main() {
 
-	//create/decalre/initialize a variables in go
-	//strings
+	age := 35
+	name := "sandun"
 
-	//1.data type definition
-	var nameOne string = "one"
-	fmt.Println(nameOne)
+	//Print
+	fmt.Print("hello, ") //start with capital letter cuz fmt makes that public, and this dosen't add a new line
+	fmt.Print("world!")  // output is - hello, world!
 
-	//2.without data type
-	var nameTwo = "two"
-	fmt.Println(nameTwo)
+	fmt.Print("hello, ") //if we want to add a new line use '\n'
+	fmt.Print("world! \n")
+	fmt.Print("new line")
 
-	//3.assign a variable later
-	var nameThree string
-	fmt.Println(nameThree)
+	//Println
+	fmt.Println("hello sandun!") //this will print separatly and add a new line
+	fmt.Println("goodbye sandun!")
 
-	nameThree = "three" //can't change data type like assign int value to varaible nameThree
-	fmt.Println(nameThree)
+	// output variables to the console using Print function
+	fmt.Println("my age is", age, "my name is", name) //to use a variable in Println use ',' comma to concat
 
-	//4.without using var and use instead colun we only do this when initializing declaring the variable
-	//cant use this outside a function
-	// nameFour := "four"
-	// fmt.Println(nameFour)
+	// format strings
+	//is whey to create a string with variables embeded inside
+	//Printf (formatted strings)
+	fmt.Printf("my age is %v and my name is %v \n", age, name) //we use format specifiers to emded a variable to a string '%v' to find the variable in sequence
+	fmt.Printf("my age is %q and my name is %q \n", age, name) //'%q' is used to quote around the variable	when we output them , not going to work with int
+	fmt.Printf("age is of type %T \n", age)                    //'%T' is used to get the date type of the variable
+	fmt.Printf("your score %f points! \n", 225.55)             //'%f' is used to print float numbers
+	fmt.Printf("your score %0.1f points! \n", 225.55)          //'%f' you can limit/round the number points that print with the float numbers
 
-	//int
-	var ageOne int = 20
-	var ageTwo = 30
-	//infort type
-	ageThree := 40
+	// Sprintf (save formatted strings)
+	var str = fmt.Sprintf("my age is %v and my name is %v \n", age, name) // in here we can save this string format in to a variable
+	fmt.Println("the saved string is : ", str)                            // output is the saved string is :  my age is 35 and my name is sandun
 
-	fmt.Println(ageOne, ageTwo, ageThree)
-
-	//bits & memory
-	var numOne int8 = 25
-	var numTwo int8 = -128
-	var numeThree uint16 = 256
-
-	var scoreOne float32 = 25.98
-	var scoreTwo float64 = 3454534434234424325.98
-	scoreThree := 1.5
 }

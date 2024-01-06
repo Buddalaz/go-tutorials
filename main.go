@@ -2,55 +2,43 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"strings"
 )
 
-// define a function in outside the main function
-func sayGreeting(value string) {
-	fmt.Printf("Good morning %v \n", value)
-}
+// return multiple values from a function
+func getInitials(value string) (string, string) { //define the sequence/order to whats returns
+	//convert the string into capitals
+	s := strings.ToUpper(value)
 
-// single arguments
-func sayBye(value string) {
-	fmt.Printf("Goodbye %v \n", value)
-}
+	//split the two words into a slice
+	names := strings.Split(s, " ")
 
-// multiple arguments
-func cycleNames(s []string, f func(string)) { //function can be also pass as an arguments in this second argument accepted function is string
-	for _, v := range s {
-		f(v)
+	var initials []string
+	for _, v := range names {
+		initials = append(initials, v[:1])
 	}
-}
 
-// return value from a function
-func circleArea(r float64) float64 { //in here we specify the return value after the parenthesis
-	return math.Pi * r * r
+	if len(initials) > 1 {
+		return initials[0], initials[1]
+	}
+
+	return initials[0], "_"
+
 }
 
 func main() {
 
-	//calling a function
-	// sayGreeting("mario") //output -> Good morning mario
-	// sayGreeting("luigi") //output -> Good morning luigi
-	// sayBye("mario")      //output -> Goodbye mario
+	//calling the function
+	fName1, Lname1 := getInitials("sandun sampath")
 
-	//calling multiple arguments
-	cycleNames([]string{"simon", "ksi", "vik123"}, sayGreeting) //we only pass the reference in the calling function
-	cycleNames([]string{"simon", "ksi", "vik123"}, sayBye)      //we only pass the reference in the calling function
-	//output is
-	// Good morning simon
-	// Good morning ksi
-	// Good morning vik123
-	// Goodbye simon
-	// Goodbye ksi
-	// Goodbye vik123
+	fmt.Println(fName1, Lname1) //S S
 
-	//return value from a function
-	a1 := circleArea(2.34)
-	a2 := circleArea(10)
+	fName2, Lname2 := getInitials("cads ddsads")
 
-	fmt.Println("Area 1 is", a1) //output -> Area 1 is 17.20210473399627
-	fmt.Println("Area 2 is", a2) //output -> Area 2 is 314.1592653589793
+	fmt.Println(fName2, Lname2) //C D
 
-	fmt.Printf("circle 1 is %0.3f and circle 2 is %0.3f", a1, a2) //output -> circle 1 is 17.202 and circle 2 is 314.159
+	fName3, Lname3 := getInitials("sdsads")
+
+	fmt.Println(fName3, Lname3) //S _
+
 }

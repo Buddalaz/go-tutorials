@@ -1,44 +1,47 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
 
 func main() {
 
-	//create an array
-	var ages1 [3]int = [3]int{20, 25, 30} //this array has fixed leangth
-	var ages2 = [3]int{10, 20, 30}        //this array is same as this
+	//go different libries
+	//strings packeage
 
-	//print array elements and length
-	fmt.Println(ages1, len(ages1))
-	fmt.Println(ages2, len(ages2)) // their is a function for check leangth of an array called len()
+	greeting := "hello there friends!"
+	fmt.Println(strings.Contains(greeting, "hello")) //in here strings is a libery that import from go this will check the given search value is
+	// contains in the greeting word, if exist return true else false
+	fmt.Println(strings.Contains(greeting, "hello!")) //this retruns false
 
-	//string arrays
-	names := [4]string{"adb", "asc", "sdas", "sasrfe"}
-	names[1] = "sadun" //can change element values
-	fmt.Println(names, len(names))
+	fmt.Println(strings.ReplaceAll(greeting, "hello", "hi")) //output -> hi there friends!
+	//in here in the string it replace the all value hello with hi. this dosen't override the greeting
+	//string this will create a new string with the replace once
 
-	//slices (use arrays under the hood)
-	//we can change leangth, can add items to it or take items awey with it
-	var scores = []int{100, 50, 60} //not define the leangth
-	scores[2] = 25
+	fmt.Println(strings.ToUpper(greeting)) //this will print all the words with capitals output-> HELLO THERE FRIENDS!
 
-	//append item to this slices
-	scores = append(scores, 85) //what happends here was, this dosent cahnge the scores instead of this return new slices with the append score just like override the scores
+	fmt.Println(strings.Index(greeting, "ll")) //find the index of the provided word output-> 2
 
-	fmt.Println(scores, len(scores))
+	fmt.Println(strings.Split(greeting, " ")) //split the words in to an array output-> [hello there friends!]
 
-	// slices ranges -> range is a way to get range of element from existing arrays wishe and store them to slice
-	rangeOne := names[1:3]
-	fmt.Println(rangeOne) //output ->[sadun sdas]
+	fmt.Println("original string value = ", greeting) //output -> original string value =  hello there friends!
 
-	rangeTwo := names[2:] //this will get index 2 to end of the items
-	fmt.Println(rangeTwo) //output ->[sdas sasrfe]
+	//sort package
 
-	rangeThree := names[:3] //this will get from start to index 3 not the 3
-	fmt.Println(rangeThree) //output -> [adb sadun sdas]
+	ages := []int{45, 20, 35, 30, 75, 60, 50, 25}
+	//sort slice of integers
+	sort.Ints(ages)   //this method altered the original slice
+	fmt.Println(ages) //output -> [20 25 30 35 45 50 60 75]
 
-	//we can also append items to ranges end of the day they also slices
-	rangeOne = append(rangeOne, "koopa")
-	fmt.Println(rangeOne) //output -> [sadun sdas koopa]
+	index := sort.SearchInts(ages, 30) //search slice of integers, return the position of 30
+	fmt.Println(index)                 //output will be get from the previous result sorted output -> 2
+
+	names := []string{"animal", "bird", "fish", "reptailes"}
+	sort.Strings(names) //sort this slice in to alphabetical order
+	fmt.Println(names)  //output -> [animal bird fish reptailes]
+
+	fmt.Println(sort.SearchStrings(names, "fish")) //search string and return the index of the sorted slice, output -> 2
 
 }

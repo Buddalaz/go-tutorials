@@ -2,20 +2,48 @@ package main
 
 import "fmt"
 
-var score = 99.5
-
 func main() {
-	sayHello("mario") //these function can access from other files
 
-	for _, value := range points {
-		fmt.Println(value)
+	//maps
+	//maps allow us to store key value pairs whether keys can be different types and the vlues different types as well, 
+	//but in a single mapp all of the keys must be same type and all of the values must be the same type as well
+	fmt.Println("mapp excerisce.....")
+
+	//create a map
+	menu := map[string]float64{
+		"soup":          4.99,
+		"pie":           7.99,
+		"salad":         6.99,
+		"tofee pudding": 3.55,
 	}
 
-	//but .\main.go:6:2: undefined: sayHello // .\main.go:8:24: undefined: points this will output because of that we have to run those 2 files
-	//go run main.go greeting.go
+	//print the map
+	fmt.Println(menu) //map[pie:7.99 salad:6.99 soup:4.99 tofee pudding:3.55]
 
-	// var score = 99.5 can't access this inside the main function it has to be outside the function
+	//print a key in the map
+	fmt.Print(menu["pie"]) //7.99
 
-	showScore()
+	//looping maps
+	for k, v := range menu {
+		fmt.Println(k, "-", v)
+	}
+
+	//ints as key type
+	phoneBooks := map[int]string{
+		1234: "sandun",
+		5678: "sampath",
+		9123: "dewage",
+	}
+
+	fmt.Println(phoneBooks) //map[1234:sandun 5678:sampath 9123:dewage]
+
+	fmt.Println(phoneBooks[1234]) //sandun
+
+	//update item inside a map
+	phoneBooks[9123] = "ginimala" //can't assign a int cuz key can't change and should be assign a define type which is string
+	fmt.Println(phoneBooks) //map[1234:sandun 5678:sampath 9123:ginimala]
+
+	phoneBooks[1234] = "eppawela"
+	fmt.Println(phoneBooks) //map[1234:eppawela 5678:sampath 9123:ginimala]
 
 }

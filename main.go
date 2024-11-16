@@ -2,48 +2,44 @@ package main
 
 import "fmt"
 
+func updateName1(x string) {
+	x = "wedge"
+}
+
+func updateName2(x string) string {
+	x = "wedge"
+	return x
+}
+
+func updateMenu(y map[string]float64) {
+	y["coffee"] = 2.99
+}
+
 func main() {
 
-	//maps
-	//maps allow us to store key value pairs whether keys can be different types and the vlues different types as well, 
-	//but in a single mapp all of the keys must be same type and all of the values must be the same type as well
-	fmt.Println("mapp excerisce.....")
+	//pass-by-value
+	//Go makes "copies" of values when passed into functions
 
-	//create a map
+	//group A types(non-pointer values) -> strings, ints, bools, floats, arrays, structs
+	name := "tifa"
+
+	updateName1(name)
+
+	fmt.Println(name) //print tifa
+
+	name = updateName2(name) //in this method will return the updated copie value
+
+	fmt.Println(name) //print wedge
+
+	//group B types(pointer wrapper Values) -> slices, maps, functions
+
 	menu := map[string]float64{
-		"soup":          4.99,
-		"pie":           7.99,
-		"salad":         6.99,
-		"tofee pudding": 3.55,
+		"pie":       5.95,
+		"ice cream": 3.99,
 	}
 
-	//print the map
-	fmt.Println(menu) //map[pie:7.99 salad:6.99 soup:4.99 tofee pudding:3.55]
+	updateMenu(menu) //when passing the map(pointer wrapper Values) this will update/change the same memory block
 
-	//print a key in the map
-	fmt.Print(menu["pie"]) //7.99
-
-	//looping maps
-	for k, v := range menu {
-		fmt.Println(k, "-", v)
-	}
-
-	//ints as key type
-	phoneBooks := map[int]string{
-		1234: "sandun",
-		5678: "sampath",
-		9123: "dewage",
-	}
-
-	fmt.Println(phoneBooks) //map[1234:sandun 5678:sampath 9123:dewage]
-
-	fmt.Println(phoneBooks[1234]) //sandun
-
-	//update item inside a map
-	phoneBooks[9123] = "ginimala" //can't assign a int cuz key can't change and should be assign a define type which is string
-	fmt.Println(phoneBooks) //map[1234:sandun 5678:sampath 9123:ginimala]
-
-	phoneBooks[1234] = "eppawela"
-	fmt.Println(phoneBooks) //map[1234:eppawela 5678:sampath 9123:ginimala]
+	fmt.Println(menu) //print map[coffee:2.99 ice cream:3.99 pie:5.95]
 
 }

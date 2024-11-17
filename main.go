@@ -8,6 +8,7 @@ func main() {
 
 	myBill := newBill("mario's bill")
 
-	fmt.Println(myBill) //this will print bill.go newly created struct {mario's bill map[] 0}
+	// fmt.Println(myBill) //this will print bill.go newly created struct {mario's bill map[] 0}
 
+	fmt.Println(myBill.format())
 }

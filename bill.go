@@ -1,26 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
-//create a struct
+// create a struct
 type bill struct {
 	name  string
 	items map[string]float64
 	tip   float64
 }
 
-//make new bills
+// make new bills
 func newBill(name string) bill {
 	b := bill{
 		name:  name,
-		items: map[string]float64{"pie": 5.99, "cake": 3.99},
+		items: map[string]float64{},
 		tip:   0,
 	}
 	return b
 }
 
-//add methods as receiver fuction to the as associate with bill
-//format the bill -> where we receive bill object into this fuction can access that within the fuction
+// add methods as receiver fuction to the as associate with bill
+// format the bill -> where we receive bill object into this fuction can access that within the fuction
 func (b bill) format() string {
 	fs := "Bill breakdown: \n"
 	var total float64 = 0
@@ -40,12 +43,25 @@ func (b bill) format() string {
 	return fs
 }
 
-//update tip
+// update tip
 func (b *bill) updateBill(tip float64) { //go will automatically add the pointer to this no need to add the explicitlly
 	b.tip = tip
 }
 
-//add an item to the bill
+// add an item to the bill
 func (b *bill) addItem(name string, price float64) {
 	b.items[name] = price
+}
+
+func (b *bill) save() {
+	data := []byte(b.format())
+
+	err := os.WriteFile("bills/"+b.name+".txt", data, 0644)
+
+	if err != nil {
+		panic(err) //this method will stop the program and print the error
+	}
+
+	fmt.Println("bill is saved to file")
+
 }

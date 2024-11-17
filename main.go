@@ -2,44 +2,51 @@ package main
 
 import "fmt"
 
-func updateName1(x string) {
+func updateName(x string) {
 	x = "wedge"
 }
 
-func updateName2(x string) string {
-	x = "wedge"
-	return x
-}
-
-func updateMenu(y map[string]float64) {
-	y["coffee"] = 2.99
+func updateNameThroughPointer(x *string) { //accepting a pointer what ever passing to the paramater value store in the memory location
+	*x = "wedge" //dereference the passing pointer into the variable
 }
 
 func main() {
 
-	//pass-by-value
-	//Go makes "copies" of values when passed into functions
+	//pointers -> a pointer is just a pointer to a memory location
 
-	//group A types(non-pointer values) -> strings, ints, bools, floats, arrays, structs
 	name := "tifa"
 
-	updateName1(name)
+	updateName(name)
 
-	fmt.Println(name) //print tifa
+	fmt.Println("memory address of name is: ", &name) //-> create a pointer to the memory location of the name vaiable and the output is like
+	//memory address of name is: 0xc000050250
 
-	name = updateName2(name) //in this method will return the updated copie value
+	//store pointers into a variable
 
-	fmt.Println(name) //print wedge
+	m := &name //create a variable called m and ampersion the name into it(storing the memory location pointer in its own memory blocks)
 
-	//group B types(pointer wrapper Values) -> slices, maps, functions
+	fmt.Println("memory address: ", m) //this will print the same memory address of the name memory address: 0xc000050250
 
-	menu := map[string]float64{
-		"pie":       5.95,
-		"ice cream": 3.99,
-	}
+	fmt.Println(name)
 
-	updateMenu(menu) //when passing the map(pointer wrapper Values) this will update/change the same memory block
+	//to access the value of the pointer we use astric before the pointer variable
 
-	fmt.Println(menu) //print map[coffee:2.99 ice cream:3.99 pie:5.95]
+	fmt.Println("value at memory address: ", *m) //value at memory address: tifa
+
+	fmt.Println(name)
+
+	//change the value of the pointer by passing into a function
+
+	updateNameThroughPointer(m)
+
+	fmt.Println(name) //will print the updated value as wedge
 
 }
+
+/*
+|--name---|----m----|
+|  0x001  |  0x002  |
+|---------|---------|
+| "tifa"  |  p0x001 |
+|---------|---------|
+*/

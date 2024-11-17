@@ -1,21 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func getInput(prompt string, r *bufio.Reader) (string, error) {
+	fmt.Print(prompt)
+	input, err := r.ReadString('\n')
+	return strings.TrimSpace(input), err
+}
+
+func createBill() bill {
+	reader := bufio.NewReader(os.Stdin) //use bufio package to get user input source as os(which is the terminal)
+
+	name, _ := getInput("Create a new bill name: ", reader)
+
+	b := newBill(name)
+	fmt.Println("Created the bill - ", b.name)
+
+	return b
+}
+
 
 func main() {
 
-	//structs -> blue print which describe type of data(bule print builds that print objects)
+	//get user into from the terminal by using reader
 
-	myBill := newBill("mario's bill")
+	myBill := createBill()
 
-	myBill.addItem("onion soup", 4.50)
-	myBill.addItem("veg pie", 8.95)
-	myBill.addItem("toffee pudding", 4.95)
-	myBill.addItem("coffee", 3.25)
+	fmt.Println(myBill)
 
-	myBill.updateBill(10) // this is not going to update the tip in bill bcuz we update the copie that we passed
-
-	// fmt.Println(myBill) //this will print bill.go newly created struct {mario's bill map[] 0}
-
-	fmt.Println(myBill.format())
 }

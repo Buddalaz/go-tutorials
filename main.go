@@ -24,12 +24,20 @@ func createBill() bill {
 	return b
 }
 
+func promptOptions(b bill) {
+	reader := bufio.NewReader(os.Stdin)
+
+	opt, _ := getInput("Choose option (a - add item, s - save bill, t -add tip): ", reader)
+
+	fmt.Print(opt)
+}
 
 func main() {
 
 	//get user into from the terminal by using reader
 
 	myBill := createBill()
+	promptOptions(myBill)
 
 	fmt.Println(myBill)
 
